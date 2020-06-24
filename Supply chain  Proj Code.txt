@@ -1,0 +1,93 @@
+pragma solidity 0.5.17;
+
+contract PartsManagement{
+
+    struct Part{
+        address manufacturer;
+        bytes32 partNumber;
+        bytes32 partType;
+	bytes32 partLocation;
+    }
+
+    struct Product{
+	bool idgenerated;
+        address manufacturer;
+        bytes32 proId;
+	bytes32 proName;
+	bytes32[] proState; //(1 = pending, 2 = parts Supplied, 3 = success, 4 = cancel)
+	bytes32[] timeStamp; //(when)
+
+	bytes32[] parts;
+}
+
+mapping(bytes32 => Product) public productMapping;
+mapping(bytes32 => Part) public parts;
+
+consturctor(){
+	Owner = msg.sender;
+}
+
+////// MODIFIER /////
+///Access modifier to give access to Owner only (Assembler) ////
+
+modifier onlyOwner(){
+	require(Owner == msg.sender);
+	_;
+}
+
+/////MODIFIER ENDS //////
+
+function createProduct(bytes32 _proId, bytes32 _proName, bytes32 _proState) public returns (address) {
+	address productId = address(sha256(msg.sender, now));
+
+	productMapping[productId].idgenerated = true;
+	productMapping[productId].proId = _proId;
+	productMapping[productId].proName = _proName;
+	productMapping[productId].proState = 1;
+	productMapping[productId].timeStamp = now;
+
+
+	return productId;
+
+}
+
+function battarySupplyMigration(address productId, bytes32 _partType){
+	require(productMapping[productId].idgenerated);
+	require(suppliers[msg.sender]);
+	require(productMapping[_productId].proState == 1;
+
+	
+	productMapping[productId].parts = _partType;
+	productMapping[productId].timeStamp = now;
+	productMapping[productId].proState = 2;
+
+   }
+
+function screenSupplyMigration(address productId, bytes32 _partType){
+	require(productMapping[productId].idgenerated);
+	require(suppliers[msg.sender]);
+	require(productMapping[_productId].proState == 1;
+
+	
+	productMapping[productId].parts = _partType;
+	productMapping[productId].timeStamp = now;
+	productMapping[productId].proState = 2;
+
+   }
+
+
+function motherboardSupplyMigration(address productId, bytes32 _partType){
+	require(productMapping[productId].idgenerated);
+	require(suppliers[msg.sender]);
+	require(productMapping[_productId].proState == 1;
+
+	
+	productMapping[productId].parts = _partType;
+	productMapping[productId].timeStamp = now;
+	productMapping[productId].proState = 2;
+
+   }
+
+
+
+    }
