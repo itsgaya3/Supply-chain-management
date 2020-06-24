@@ -1,0 +1,74 @@
+pragma solidity 0.5.17;
+
+
+contract PartsManagement{
+/////Declaration ///
+
+    struct Product{
+		bool idgenerated;
+		uint proId;
+		string proName;
+		uint proState; // 1 = pending 2 = parts Supplied, 3 = success, 4 = cancel;
+		uint timeStampB;
+
+		address supplierBattery;
+		string partType;
+			
+		address supplierScreen;
+		string partType;
+		
+
+		address supplierMotherboard;
+		string partType;
+}
+
+mapping (address => product) public productmapping;
+mapping (address => bool) public suppliers;
+address[] public SupplierAccts;
+
+///////Declaration End ////////////
+
+/////MODIFIERS /////////
+
+constructor(){
+	Owner = msg.sender;
+}
+
+modifier onlyOwner(){
+	require(Owner == msg.sender);
+	_;
+}
+
+////MODIFIERS END//////
+
+////MANAGE SUPPLIERS ////
+
+function ManageSuppliers(address _supplierAddress) public returns (string) {
+	if(!supplier[_supplierAddress]){
+		suppliers[_suppliersAddress] = true;
+	} else {
+		suppliers[_supplierAddress] = false;
+	}
+
+	return "Supplier status is updated";
+
+  }
+
+////MANAGE SUPPLIERS END/////
+
+////CREATE PRODUCT FUNCTION //////
+
+function CreateProduct(uint _proId, string _proName) public returns (address) {
+	
+	productmapping[_address].idgenerated = true;
+	productmapping[_address].proId = _itemid;
+	productmapping[_address].proName = _itemname;
+	productmapping[_address].proState = 1;
+	productmapping[_address].timeStampB = now;
+
+	SupplierAccts.push(_address);
+
+}
+////CREATE PRODUCT FUNCTION ENDS//////
+
+
