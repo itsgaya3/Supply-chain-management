@@ -4,6 +4,16 @@ pragma solidity 0.5.17;
 contract PartsManagement{
 /////Declaration ///
 
+	struct partner {
+        bytes32 partnerName;
+        bytes32 partnerLocation;
+		bytes32 partnerAddress;
+        bytes32 role;
+    	existence exists;
+    }
+    mapping(address => partner) partnerIndex;
+    address[] partnerKeys;
+
     struct Product{
 		bool idgenerated;
 		uint proId;
@@ -23,6 +33,7 @@ contract PartsManagement{
 }
 
 mapping (address => product) public productmapping;
+bytes32[] productKeys;
 mapping (address => bool) public suppliers;
 address[] public SupplierAccts;
 
@@ -41,34 +52,92 @@ modifier onlyOwner(){
 
 ////MODIFIERS END//////
 
-////MANAGE SUPPLIERS ////
+////ADD PARTNERS EDIT PARTNERS ////
 
-function ManageSuppliers(address _supplierAddress) public returns (string) {
-	if(!supplier[_supplierAddress]){
-		suppliers[_suppliersAddress] = true;
-	} else {
-		suppliers[_supplierAddress] = false;
-	}
+function addPartner(address paddress,bytes32 name,bytes32 location,bytes32 role) public onlyOwner {
+    	require(partnerIndex[paddress].exists != existence.YES);
+	        
+    	partner memory currentPartner;
+        currentPartner.partnerName  = name;
+        currentPartner.partnerLocation  = location;
+        currentPartner.role = role;
+    	currentPartner.exists = existence.YES;
+        
+        partnerIndex[partnerAddress] = currentPartner;
+    
+        partnerKeys.push(partnerAddress);
+    }
 
-	return "Supplier status is updated";
+function editPartner(address paddress) public onlyOwner returns(bytes32 name,bytes32 location,bytes32 role) {
+    	require(partnerIndex[paddress].exists = existence.YES);
+	        
+    	partner memory currentPartner;
+        currentPartner.partnerName  = name;
+        currentPartner.partnerLocation  = location;
+        currentPartner.role = role;
+    	        
+        partnerIndex[partnerAddress] = currentPartner;
+    
+        partnerKeys.push(partnerAddress);
 
-  }
+	return "Your edits for partner is sucessfully!";
 
-////MANAGE SUPPLIERS END/////
+    }
+
+////ADD PARTNERS EDIT PARTNERS ENDS ////
+
 
 ////CREATE PRODUCT FUNCTION //////
 
-function CreateProduct(uint _proId, string _proName) public returns (address) {
+function addProduct(uint _proId, string _proName) public returns (address) {
 	
 	productmapping[_address].idgenerated = true;
-	productmapping[_address].proId = _itemid;
-	productmapping[_address].proName = _itemname;
+	productmapping[_address].proId = _proId;
+	productmapping[_address].proName = _proName;
 	productmapping[_address].proState = 1;
 	productmapping[_address].timeStampB = now;
 
-	SupplierAccts.push(_address);
+	productKeys.push(_address);
 
 }
 ////CREATE PRODUCT FUNCTION ENDS//////
 
+//////PART SUPPLIES (UPDATE PRODUCT) /////////
 
+function supplyBattery(address _address, string _part){
+	require(productmapping[_address].idgenerated);
+	require(partnerIndex[_address].exists = existence.YES);
+	require(suppliers[msg.sender]);
+	require(productmapping[_address].orderstatus) == 1;
+
+	productmapping[_address].supplierBattery = msg.sender;
+	productmapping[_address].partType = _part;
+	productmapping[_address].proState = 2;
+
+   }
+
+function supplyScreen(address _address, string _part){
+	require(productmapping[_address].idgenerated);
+	require(partnerIndex[_address].exists = existence.YES);
+	require(suppliers[msg.sender]);
+	require(productmapping[_address].orderstatus) == 1;
+
+	productmapping[_address].supplierScreen = msg.sender;
+	productmapping[_address].partType = _part;
+	productmapping[_address].proState = 2;
+
+   }
+
+function supplyMotherboard(address _address, string _part){
+	require(productmapping[_address].idgenerated);
+	require(partnerIndex[_address].exists = existence.YES);
+	require(suppliers[msg.sender]);
+	require(productmapping[_address].orderstatus) == 1;
+
+	productmapping[_address].supplierScreen = msg.sender;
+	productmapping[_address].partType = _part;
+	productmapping[_address].proState = 2;
+
+   }
+
+//////PART SUPPLIES (UPDATE PRODUCT) ENDS/////////
