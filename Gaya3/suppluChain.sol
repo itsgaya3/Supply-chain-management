@@ -2,20 +2,14 @@ pragma solidity 0.5.17;
 
 contract SupplyChain{
     
- address public owner;
+ 
   address public manufacturerAddress;
-  address public partnerAddress;
-modifier onlymanufacturer() {
-  if(msg.sender == manufacturerAddress) _;
-}
-modifier onlyPartner(){
-   if(msg.sender == partnerAddress) _; 
-}
+  address public partnersAddress;
  struct manufacturer{
     
     address mfgaddress;
     bytes32 mfgName;
-    bytes32 mfgCountry;
+    bytes32 mfgLocation;
     
  }
  
@@ -24,7 +18,7 @@ address[] public manufacturers;
     
 
 struct partner{
-    bytes32 partnerAddress;
+    address partnerAddress;
     bytes32 partnerName;
     bytes32 partnerLocation;
     bytes32 role;
@@ -45,34 +39,45 @@ struct product{
 mapping(bytes32 => product) public productDetails;  
 bytes32[] public products;
   
+constructor() public{
+	manufacturerAddress = msg.sender;
+}
+modifier onlymanufacturer() {
+  require(msg.sender == manufacturerAddress);
+  _;
+}
+modifier onlyPartner(){
+   require(msg.sender == partnersAddress);
+   _; 
+}
 
-    function addManufacturer(address mfgaddress,bytes32 mfgName,bytes32 mfgCountry) public{
+    function addManufacturer(address mfgaddress,bytes32 mfgName,bytes32 mfgLocation) public {
         
-        // manufacturerDetails[mfgaddress].mfgaddress = mfgaddress;
+        manufacturerDetails[mfgaddress].mfgaddress = mfgaddress;
         manufacturerDetails[mfgaddress].mfgName = mfgName;
-        manufacturerDetails[mfgaddress].mfgCountry = mfgCountry;
+        manufacturerDetails[mfgaddress].mfgLocation = mfgLocation;
         manufacturers.push(mfgaddress);
     }
     
     function verifyManufacturer(address mfgaddress) view public returns(bytes32, bytes32){
-        return(manufacturerDetails[mfgaddress].mfgName, manufacturerDetails[mfgaddress].mfgCountry);
+        return(manufacturerDetails[mfgaddress].mfgName, manufacturerDetails[mfgaddress].mfgLocation);
     }
     
-    function addPatner(address _partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role) public onlymanufacturer() {
-
-        partnerDetails[_partnerAddress].partnerName = partnerName;
-        partnerDetails[_partnerAddress].partnerLocation = partnerLocation;
-        partnerDetails[_partnerAddress].role = role;
-        partners.push(_partnerAddress);
+    function addPatner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role) public onlymanufacturer() {
+        partnerDetails[partnerAddress].partnerAddress = partnerAddress;
+        partnerDetails[partnerAddress].partnerName = partnerName;
+        partnerDetails[partnerAddress].partnerLocation = partnerLocation;
+        partnerDetails[partnerAddress].role = role;
+        partners.push(partnerAddress);
 
     }
     
-    function editPartner(address _partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role)  public onlymanufacturer() {
+    function editPartner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role)  public onlymanufacturer() onlymanufacturer(){
 	
-        partnerDetails[_partnerAddress].partnerName = partnerName;
-        partnerDetails[_partnerAddress].partnerLocation = partnerLocation;
-        partnerDetails[_partnerAddress].role = role;
-        partners.push(_partnerAddress);
+        partnerDetails[partnerAddress].partnerName = partnerName;
+        partnerDetails[partnerAddress].partnerLocation = partnerLocation;
+        partnerDetails[partnerAddress].role = role;
+        // partners.push(_partnerAddress);
     }
     
     function verifyPartner(address _partnerAddress) view public returns(bytes32, bytes32,bytes32){
