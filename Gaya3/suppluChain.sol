@@ -5,7 +5,7 @@ contract SupplyChain{
  address public mfgaddress;
  address public partnerAddress;
 
- struct manufacturer{
+    struct manufacturer{
     bytes32 mfgName;
     bytes32 mfgCountry;
     
