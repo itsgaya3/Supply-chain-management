@@ -45,6 +45,7 @@ constructor() public{
 modifier onlymanufacturer() {
   require(msg.sender == manufacturerAddress);
   _;
+
 }
 modifier onlyPartner(){
    require(msg.sender == partnersAddress);
@@ -52,7 +53,7 @@ modifier onlyPartner(){
 }
 
     function addManufacturer(address mfgaddress,bytes32 mfgName,bytes32 mfgLocation) public {
-        
+        mfgaddress=manufacturerAddress;
         manufacturerDetails[mfgaddress].mfgaddress = mfgaddress;
         manufacturerDetails[mfgaddress].mfgName = mfgName;
         manufacturerDetails[mfgaddress].mfgLocation = mfgLocation;
@@ -64,12 +65,14 @@ modifier onlyPartner(){
     }
     
     function addPatner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role) public onlymanufacturer() {
+        partnerAddress=partnersAddress;
         partnerDetails[partnerAddress].partnerAddress = partnerAddress;
         partnerDetails[partnerAddress].partnerName = partnerName;
         partnerDetails[partnerAddress].partnerLocation = partnerLocation;
         partnerDetails[partnerAddress].role = role;
         partners.push(partnerAddress);
-
+        
+        
     }
     
     function editPartner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role)  public onlymanufacturer() onlymanufacturer(){
@@ -77,7 +80,6 @@ modifier onlyPartner(){
         partnerDetails[partnerAddress].partnerName = partnerName;
         partnerDetails[partnerAddress].partnerLocation = partnerLocation;
         partnerDetails[partnerAddress].role = role;
-        // partners.push(_partnerAddress);
     }
     
     function verifyPartner(address _partnerAddress) view public returns(bytes32, bytes32,bytes32){
