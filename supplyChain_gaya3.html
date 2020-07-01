@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Blockholic - Supplychain BC3 Project.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="This is an example dashboard created using build-in elements and components.">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link href="./main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container app-theme-white body-tabs-shadow ">
+        <div class="app-main">
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="fa fa-ship">
+                                    </i>
+                                </div>
+                                <div>Supplychain Management
+                                    <div class="page-title-subheading">Dashboard to Track & Update Products on Blockchain.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content bg-midnight-bloom">
+                                <div class="widget-content-wrapper text-white">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Products</div>
+                                        <div class="widget-subheading">Total Products Requested</div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <div class="widget-numbers text-white"><span>34</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content bg-midnight-bloom">
+                                <div class="widget-content-wrapper text-white">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Waiting for Goods</div>
+                                        <div class="widget-subheading">Raw Material</div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <div class="widget-numbers text-white"><span>22</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content bg-midnight-bloom">
+                                <div class="widget-content-wrapper text-white">
+                                    <div class="widget-content-left">
+                                        <div class="widget-heading">Production</div>
+                                        <div class="widget-subheading">Pending at Manufacturing</div>
+                                    </div>
+                                    <div class="widget-content-right">
+                                        <div class="widget-numbers text-white"><span>8</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content bg-midnight-bloom">
+                                <div class="widget-content-outer text-white">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Completed</div>
+                                            <div class="widget-subheading">Ready to Ship</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-white">4</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content bg-midnight-bloom">
+                                <div class="widget-content-outer text-white">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Shipped to Supplier</div>
+                                            <div class="widget-subheading">Already Shipped</div>
+                                        </div>
+                                        <div class="widget-content-right text-white">
+                                            <div class="widget-numbers text-white">3</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-3 widget-content bg-midnight-bloom">
+                                <div class="widget-content-outer text-white">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Sold</div>
+                                            <div class="widget-subheading">Product Purchased</div>
+                                        </div>
+                                        <div class="widget-content-right text-white">
+                                            <div class="widget-numbers text-white">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">Product Status
+                                    <div class="btn-actions-pane-right">
+                                        <div role="group" class="btn-group-sm btn-group">
+                                            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#productModal">Add Product</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">Product ID</th>
+                                            <th>Initiated By</th>
+                                            <th class="text-center">Screen</th>
+                                            <th class="text-center">Battery</th>
+                                            <th class="text-center">Motherboard</th>
+                                            <th class="text-center">Assembly</th>
+                                            <th class="text-center">Supplier</th>
+                                            <th class="text-center">Courier</th>
+                                            <th class="text-center">Retailer</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-center text-muted">345678</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">345679</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">Elliot Huber</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
+                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
+                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
+                                            <td class="text-center"><div class="badge badge-danger">In Progress</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">345680</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">Ruben Tillman</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
+                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
+                                            <td class="text-center"><div class="badge badge-success">Completed</div></td>
+                                            <td class="text-center"><div class="badge badge-info">On Hold</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">Manage Users
+                                    <div class="btn-actions-pane-right">
+                                        <div role="group" class="btn-group-sm btn-group">
+                                            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#userModal">Add User</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">User ID</th>
+                                            <th>Name</th>
+                                            <th class="text-center">Location</th>
+                                            <th class="text-center">ETH Address</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-center text-muted">345678</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">Japan</td>
+                                            <td class="text-center">0x67782A2187c13BDDBD49Fd94a792308aFd91522e</td>
+                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
+                                            <td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">345678</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">Japan</td>
+                                            <td class="text-center">0x67782A2187c13BDDBD49Fd94a792308aFd91522e</td>
+                                            <td class="text-center"><div class="badge badge-success">Active</div></td>
+                                            <td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-wrapper-footer">
+                    <div class="app-footer">
+                        <div class="app-footer__inner">
+                            <div class="app-footer-right">
+                                <ul class="nav">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            Build by Team BC3
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Add Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userModalLabel">Add User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="./assets/scripts/main.js"></script>
+<script src="./Gaya3/supplyChain.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</body>
+</html>
