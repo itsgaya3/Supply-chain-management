@@ -363,5 +363,26 @@ abi = [
 		"stateMutability": "view",
 		"type": "function"
 	}
-]
-console.log(contractAddress);
+];
+
+window.addEventListener('load',async()=>{
+
+	if(window.ethereum){
+		window.web3 = new Web3(ethereum);
+
+		try{
+			await ethereum.enable();
+
+			if(typeof web3 !== "undefined"){
+				web3 = new Web3(web3.currentProvider);
+			}else{
+				web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/37adf31dd7164cd1995d21a8eb24c671"));
+			}
+
+
+		}catch (error){
+			console.log(error);
+		}
+		
+	}
+});
