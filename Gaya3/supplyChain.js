@@ -393,4 +393,17 @@ window.addEventListener('load',async()=>{
 	}else{
 		alert("Non-ethereum browser detected,Try using MetMask");
 	}
+	
 });
+
+async function addProduct() {
+	console.log("iam an issue function");
+	var proId = $('#proId').val();
+	var partAddress = $('#partAddress').val();
+	var proName = $('#proName').val();
+	var proState = $('#proState').val();
+	var timeStamp = $('#timeStamp').val();
+
+	SupplyChain.methods.addProduct(web3.utils.fromAscii(proId),partAddress,web3.utils.fromAscii(proName),web3.utils.fromAscii(proState),web3.utils.fromAscii(timeStamp));
+}
+
