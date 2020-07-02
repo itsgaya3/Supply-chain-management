@@ -1,4 +1,5 @@
 var  contractAddress = "0x06a4c2c63a3f249e763a3f04b8195831202e6d42";
+var accounts;
 abi = [
 	{
 		"constant": false,
@@ -379,10 +380,17 @@ window.addEventListener('load',async()=>{
 				web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/37adf31dd7164cd1995d21a8eb24c671"));
 			}
 
-
+			accounts = await web3.eth.getAccounts();
+			console.log(accounts);
+			web3.eth.defaultAccount = accounts[0];
+			console.log(web3.eth.defaultAccount);
 		}catch (error){
 			console.log(error);
 		}
 		
+	}else if(window.web3){
+		window.web3 = new Web3(web3.currentProvider);
+	}else{
+		alert("Non-ethereum browser detected,Try using MetMask");
 	}
 });
