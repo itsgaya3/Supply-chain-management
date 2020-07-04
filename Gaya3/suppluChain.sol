@@ -1,17 +1,13 @@
 pragma solidity 0.5.17;
 
 contract SupplyChain{
-    
- 
-  address public manufacturerAddress;
-  address public partnersAddress;
- struct manufacturer{
-    
-    address mfgaddress;
-    bytes32 mfgName;
-    bytes32 mfgLocation;
-    
- }
+    address public manufacturerAddress;
+    address public partnersAddress;
+    struct manufacturer { 
+        address mfgaddress;
+        bytes32 mfgName;
+        bytes32 mfgLocation;
+    }
  
 mapping(address=>manufacturer) manufacturerDetails;
 address[] public manufacturers;
