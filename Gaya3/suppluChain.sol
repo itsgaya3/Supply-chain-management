@@ -29,15 +29,15 @@ address[] public partners;
 
 
 struct product{
-    bytes32 proId;
+    uint256 proId;
     bytes32 proName;
     bytes32[] proState;
     bytes32[] timeStamp;
     address[] partAddress;
 }
 
-mapping(bytes32 => product) public productDetails;  
-bytes32[] public products;
+mapping(uint256 => product) public productDetails;  
+uint256[] public products;
   
 constructor() public{
 	manufacturerAddress = msg.sender;
@@ -75,7 +75,7 @@ modifier onlyPartner(){
         
     }
     
-    function editPartner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role)  public onlymanufacturer() onlymanufacturer(){
+    function editPartner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role)  public onlymanufacturer() {
 	
         partnerDetails[partnerAddress].partnerName = partnerName;
         partnerDetails[partnerAddress].partnerLocation = partnerLocation;
@@ -86,7 +86,7 @@ modifier onlyPartner(){
         return(partnerDetails[_partnerAddress].partnerName, partnerDetails[_partnerAddress].partnerLocation, partnerDetails[_partnerAddress].role);
     }
     
-    function addProduct(bytes32 proId,address[] memory partAddress,bytes32 proName,bytes32[] memory proState,bytes32[] memory timeStamp)  public onlymanufacturer(){
+    function addProduct(uint256 proId,address[] memory partAddress,bytes32 proName,bytes32[] memory proState,bytes32[] memory timeStamp)  public onlymanufacturer(){
         
         productDetails[proId].proName = proName;
         productDetails[proId].proState = proState;
@@ -95,14 +95,14 @@ modifier onlyPartner(){
         products.push(proId);
     }
     
-    function updateProduct(bytes32 proId,bytes32[] memory proState,bytes32[] memory timeStamp)  public onlyPartner(){
+    function updateProduct(uint256 proId,bytes32[] memory proState,bytes32[] memory timeStamp)  public onlyPartner() {
         
         productDetails[proId].proState = proState;
         productDetails[proId].timeStamp = timeStamp;     
     
     }
     
-    function verifyProduct(bytes32 proId) view public returns(bytes32,bytes32[] memory,bytes32[] memory,address[]memory){
+    function verifyProduct(uint256 proId) view public returns(bytes32,bytes32[] memory,bytes32[] memory,address[]memory){
         return(productDetails[proId].proName, productDetails[proId].proState, productDetails[proId].timeStamp,productDetails[proId].partAddress);
     }
  

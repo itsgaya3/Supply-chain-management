@@ -240,7 +240,7 @@
                                 <div class="card-header">Manage Users
                                     <div class="btn-actions-pane-right">
                                         <div role="group" class="btn-group-sm btn-group">
-                                            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#userModal">Add User</button>
+                                            <button type="button" id="userDetails" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#userModal">Add User</button>
                                         </div>
                                     </div>
                                 </div>
@@ -329,10 +329,10 @@
                     <div class="col-md-6">
                         <div class="card-body"><h5 class="card-title">Product Details</h5>
                             <form class="">
-                                <div class="position-relative form-group"><label for="productId" class="">Product Id</label><input id="productId" type="text" class="form-control"></div>
+                                <div class="position-relative form-group"><label for="productId" class="">Product Id</label><input id="proId" type="text" class="form-control"></div>
                                 <div class="position-relative form-group"><label for="partAddress" class="">Part Address</label><input id="partAddress" type="text" class="form-control"></div>
-                                <div class="position-relative form-group"><label for="productName" class="">Product Name</label><input id="productName" type="text" class="form-control"></div>
-                                <div class="position-relative form-group"><label for="productState" class="">Product State</label><input  id="productState" type="text" class="form-control"></div>
+                                <div class="position-relative form-group"><label for="productName" class="">Product Name</label><input id="proName" type="text" class="form-control"></div>
+                                <div class="position-relative form-group"><label for="productState" class="">Product State</label><input  id="proState" type="text" class="form-control"></div>
                                 <div class="position-relative form-group"><label for="timeStamp" class="">Time Stamp</label><input id="timeStamp" type="date" class="form-control"></div>
                             </form>
                         </div>
@@ -340,7 +340,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="saveProduct()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="">Save changes</button>
                 </div>
             </div>
         </div>
@@ -355,12 +355,36 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                <div class="modal-body" id="addUser">
+                    <h5 class="card-title">User Details</h5>
+                    <label for="productId" class="">User Id</label><input id="proId" type="text" class="form-control">
+                    <label for="partAddress" class="">User Name</label><input id="partAddress" type="text" class="form-control">
+                    <label for="productName" class="">User Location</label><input id="proName" type="text" class="form-control">
+                    <label for="productState" class="">Ether Address</label><input  id="proState" type="text" class="form-control">
+                    <label for="productState" class="">Role</label>
+                    <select  id="paymentType" class="form-control select2" >
+                        <option selected="selected">select</option>
+                        <option value="MS" >MotherBoard supplier</option>
+                        <option value="SS" >Screen supplier</option>
+                        <option value="BS" >Battery supplier</option>
+                        <option value="AS" >Assembly</option>
+                        <option value="CO" >Courier</option>
+                        <option value="R" >Retailer</option>
+                    </select>
+                    <label for="productState" class="">Status</label>
+                    <select  id="paymentType" class="form-control select2" >
+                        <option selected="selected">select</option>
+                        <option value="P" >Pending</option>
+                        <option value="OH" >on Hold</option>
+                        <option value="IP" >In Progress</option>
+                        <option value="A" >Active</option>
+                        <option value="C" >Completed</option>
+                    </select>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="addUser()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -368,5 +392,6 @@
 <script type="text/javascript" src="./assets/scripts/main.js"></script>
 <script src="./Gaya3/supplyChain.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>

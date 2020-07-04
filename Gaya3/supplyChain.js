@@ -1,4 +1,4 @@
-var  contractAddress = "0x06a4c2c63a3f249e763a3f04b8195831202e6d42";
+var  contractAddress = "0x38e10ad3634f1a243c96e05bc2b04393e8d36854";
 var accounts;
 abi = [
 	{
@@ -380,6 +380,7 @@ window.addEventListener('load',async()=>{
 				web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/37adf31dd7164cd1995d21a8eb24c671"));
 			}
 
+			SupplyChain = await new web3.eth.Contract(abi,contractAddress);
 			accounts = await web3.eth.getAccounts();
 			console.log(accounts);
 			web3.eth.defaultAccount = accounts[0];
@@ -396,14 +397,18 @@ window.addEventListener('load',async()=>{
 	
 });
 
-async function addProduct() {
+	$('#userDetails').click(function(){
 	console.log("iam an issue function");
-	var proId = $('#proId').val();
-	var partAddress = $('#partAddress').val();
-	var proName = $('#proName').val();
-	var proState = $('#proState').val();
-	var timeStamp = $('#timeStamp').val();
+	var mfgaddress = $('#mfgaddress').val();
+	var mfgName = $('#mfgName').val();
+	var mfgLocation = $('#mfgLocation').val();
 
-	SupplyChain.methods.addProduct(web3.utils.fromAscii(proId),partAddress,web3.utils.fromAscii(proName),web3.utils.fromAscii(proState),web3.utils.fromAscii(timeStamp));
-}
+	SupplyChain.methods
+		.addManufacturer(mfgaddress,partAddress,web3.utils.fromAscii(mfgName),web3.utils.fromAscii(mfgLocation))
+		.send({from: web3.eth.defaultAccount})
+		.on('receipt', function(receipt){
+			console.log(receipt);
+		});
+
+	});
 
