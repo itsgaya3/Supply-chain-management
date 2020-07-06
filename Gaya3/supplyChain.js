@@ -397,18 +397,3 @@ window.addEventListener('load',async()=>{
 	
 });
 
-	$('#userDetails').click(function(){
-	console.log("iam an issue function");
-	var mfgaddress = $('#mfgaddress').val();
-	var mfgName = $('#mfgName').val();
-	var mfgLocation = $('#mfgLocation').val();
-
-	SupplyChain.methods
-		.addManufacturer(mfgaddress,partAddress,web3.utils.fromAscii(mfgName),web3.utils.fromAscii(mfgLocation))
-		.send({from: web3.eth.defaultAccount})
-		.on('receipt', function(receipt){
-			console.log(receipt);
-		});
-
-	});
-
