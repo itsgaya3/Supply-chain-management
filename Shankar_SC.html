@@ -129,7 +129,7 @@
                                 <div class="card-header">Product Status
                                     <div class="btn-actions-pane-right">
                                         <div role="group" class="btn-group-sm btn-group">
-                                            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#productModal">Add Product</button>
+                                            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#productModal">Add Product / Update Status</button>
                                         </div>
                                     </div>
                                 </div>
@@ -240,7 +240,7 @@
                                 <div class="card-header">Manage Users
                                     <div class="btn-actions-pane-right">
                                         <div role="group" class="btn-group-sm btn-group">
-                                            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#userModal">Add User</button>
+                                            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#userModal">Add User / Update Status</button>
                                         </div>
                                     </div>
                                 </div>
@@ -408,15 +408,6 @@
                         <option value="A" >Active</option>
                         <option value="C" >Completed</option>
                     </select><br>
-                    <div class="position-relative form-group"><h4>Actions</h4><input id="actions" type="text" class="form-control"></input></div>
-                    <select  id="paymentType" class="form-control select2" >
-                        <option selected="selected">select</option>
-                        <option value="P" >Pending</option>
-                        <option value="OH" >on Hold</option>
-                        <option value="IP" >In Progress</option>
-                        <option value="A" >Active</option>
-                        <option value="C" >Completed</option>
-                    </select><br>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -426,16 +417,39 @@
         </div>
     </div>
     <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document" style="color: blue;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="userModalLabel">Add User</h5>
+                    <h3 class="modal-title" id="userModalLabel" style="color: chocolate;">Add User / Update Status</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                <div class="modal-body" id="addUser">
+                    <label for="productId" class=""><h4>User Id</h4></label><input id="proId" type="text" class="form-control"><br>
+                    <label for="partAddress" class=""><h4>User Name</h4></label><input id="partAddress" type="text" class="form-control"><br>
+                    <label for="productName" class=""><h4>User Location</h4></label><input id="proName" type="text" class="form-control"><br>
+                    <label for="productState" class=""><h4>Ether Address</h4></label><input  id="proState" type="text" class="form-control"><br>
+                    <label for="productState" class=""><h4>Role</h4></label><br>
+                    <select  id="paymentType" class="form-control select2" >
+                        <option selected="selected">select</option>
+                        <option value="MS" >MotherBoard supplier</option>
+                        <option value="SS" >Screen supplier</option>
+                        <option value="BS" >Battery supplier</option>
+                        <option value="AS" >Assembly</option>
+                        <option value="CO" >Courier</option>
+                        <option value="R" >Retailer</option>
+                    </select><br>
+                    <label for="productState" class=""><h4>Status</h4></label>
+                    <select  id="paymentType" class="form-control select2" >
+                        <option selected="selected">select</option>
+                        <option value="P" >Pending</option>
+                        <option value="OH" >on Hold</option>
+                        <option value="IP" >In Progress</option>
+                        <option value="A" >Active</option>
+                        <option value="C" >Completed</option>
+                    </select>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
