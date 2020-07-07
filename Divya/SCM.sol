@@ -5,11 +5,12 @@ pragma solidity 0.5.17;
 contract SCM {
     address public manufacturerAddress; /* manufacturer update the partner details*/
     address public PartnerAddress; //partner updates the product details and status
-
+    uint256 public proId;
     /* restricting the users or partners to edit or add the details.Only manufacturerAddress can add or edit*/
 
     constructor(address) public {
         manufacturerAddress = msg.sender;
+        proId = 34567;
     }
 
     /*if msg.sender is equals to owner(manufacturer) then able to push the data, if not the below error will pop */
@@ -34,6 +35,8 @@ contract SCM {
         bytes32 mfgLocation;
         address mfgAddress; /* mfgAddress means eth address */
     }
+    mapping(address => manufacturer) public mfgAddress;
+    address[] public mfgDetails;
 
     struct partner {
         bytes32 partnerName;
@@ -41,43 +44,35 @@ contract SCM {
         address partnerAddress;
         bytes32 role;
     }
+    mapping(address => partner) public partnerAddress;
+    address[] public partnerDetails;
 
     struct product {
-        uint256 proId;
+        
         bytes32 proName;
         bytes32[] proState;
         bytes32[] timeStamp;
         address[] partAddress;
     }
+    mapping(uint256 => product) public proId;
+    uint256[] public proDetails;
 
-    mapping(address => manufacturer) public mfgAddress;
-    address[] public mfgDetails;
+    /* Adding the manufacturerdetails by Owner */
 
-    // Adding the manufacturerdetails by Owner
-
-    function addManufacturer(
-        bytes32 _mfgName,
-        bytes32 _mfgLocation,
-        address _mfgAddress
-    ) public {
+    function addManufacturer(bytes32 _mfgName,bytes32 _mfgLocation,address _mfgAddress) public onlymanufacturer {
         mfgAddress[_mfgAddress].mfgName = _mfgName;
         mfgAddress[_mfgAddress].mfgLocation = _mfgLocation;
         mfgAddress[_mfgAddress].mfgAddress = _mfgAddress;
 
         mfgDetails.push(_mfgAddress);
     }
+    function veryManufacturer(address _mfgAddress) view public returns(bytes32 _mfgName,bytes32 _mfgLocation){
+        return (mfgAddress[_mfgAddress].mfgName,mfgAddress[_mfgAddress].mfgLocation);
+    }
 
-    mapping(address => partner) public partnerAddress;
-    address[] public partnerDetails;
+    /*Adding multiple partner details by manufacturer*/
 
-    //Adding multiple partner details by manufacturer
-
-    function addPartner(
-        bytes32 _partnerName,
-        bytes32 _partnerLocation,
-        address _partnerAddress,
-        bytes32 _role
-    ) public onlymanufacturer {
+    function addPartner(bytes32 _partnerName,bytes32 _partnerLocation,address _partnerAddress,bytes32 _role) public onlymanufacturer {
         partnerAddress[_partnerAddress].partnerName = _partnerName;
         partnerAddress[_partnerAddress].partnerLocation = _partnerLocation;
         partnerAddress[_partnerAddress].partnerAddress = PartnerAddress;
@@ -85,35 +80,34 @@ contract SCM {
 
         partnerDetails.push(_partnerAddress);
     }
-
-    //Editing multiple partner details by manufacturer
+    function veryPartner(address _partnerAddress) view public returns(bytes32 _partnerName,bytes32 _partnerLocation,bytes32 _role){
+        return (partnerAddress[_partnerAddress].partnerName,partnerAddress[_partnerAddress].partnerLocation,partnerAddress[_partnerAddress].role);
+    }
+    
+    /*Editing multiple partner details by manufacturer*/
 
     function updatePartnerDetails(
         bytes32 _partnerName,
         bytes32 _partnerLocation,
         address _partnerAddress,
         bytes32 _role
-    ) public onlymanufacturer {
+    ) public onlypartner {
         partnerAddress[_partnerAddress].partnerName = _partnerName;
         partnerAddress[_partnerAddress].partnerLocation = _partnerLocation;
         partnerAddress[_partnerAddress].partnerAddress = _partnerAddress;
         partnerAddress[_partnerAddress].role = _role;
 
-        partnerDetails.pop();
     }
 
-    //Partner details will be displaied based on partnerAddressAddress
+    /*Partner details will be displaied based on partnerAddressAddress*/
 
     function getAllPartnerDetails() public view returns (address[] memory) {
         return partnerDetails;
     }
 
-    // Adding the products
+    /*Adding the products*/
 
-    mapping(uint256 => product) public proId;
-    uint256[] public proDetails;
-
-    //Adding products screen ,battery,motherboard details by manufacturer or partner
+    /*Adding products screen ,battery,motherboard details by manufacturer or partner*/
 
     function addProduct(
         uint256 _proId,
@@ -124,7 +118,7 @@ contract SCM {
     ) public {
         require(
             msg.sender == PartnerAddress || msg.sender == manufacturerAddress
-        ); //Only partner and manufacturer are allowed to add the details.
+        ); /*Only partner and manufacturer are allowed to add the details*/
         proId[_proId].proId = _proId;
         proId[_proId].proName = _proName;
         proId[_proId].proState = _proState;
@@ -140,16 +134,13 @@ contract SCM {
     ) public onlypartner {
         require(
             msg.sender == PartnerAddress || msg.sender == manufacturerAddress
-        ); //Only partner or manufacturer are allowed to make the changes.
-        require(_proId > 0);
-
+        ); /*Only partner or manufacturer are allowed to make the changes.*/
         proId[_proId].proState = _proState;
         proId[_proId].timeStamp = _timeStamp;
 
-        proDetails.pop();
-    }
+     }
 
-    //Product details will be displaied based on proId
+    /*Product details will be displaied based on proId*/
 
     function getAllProductDetails() public view returns (uint256[] memory) {
         return proDetails;
