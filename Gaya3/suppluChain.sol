@@ -4,6 +4,8 @@ contract SupplyChain{
     
 address public owner;
 address public partnersAddress;
+address public mfg;
+uint public productId = 1000;
 constructor() public{
 	owner = msg.sender;
 }
@@ -11,11 +13,17 @@ modifier onlyOwner() {
   require(msg.sender == owner);
   _;
 }
+modifier onlyManufacturer(){
+     for(uint i=0;i<manufacturers.length;i++){
+         require(manufacturers[i] == msg.sender);
+         _;
+     }
+    
+}
 modifier onlyPartner(){
      for(uint i=0;i<partners.length;i++){
-         if(partners[i] == msg.sender){
-             _;
-         }
+         require(partners[i] == msg.sender);
+         _;
      }
 }
 struct manufacturer{
@@ -44,22 +52,22 @@ struct product{
 mapping(uint256 => product) public productDetails;  
 uint256[] public products;
     function addManufacturer(address mfgaddress,bytes32 mfgName,bytes32 mfgLocation) public onlyOwner(){
-    manufacturerDetails[mfgaddress].mfgaddress = owner;
+    manufacturerDetails[mfgaddress].mfgaddress = mfg;
         manufacturerDetails[mfgaddress].mfgName = mfgName;
         manufacturerDetails[mfgaddress].mfgLocation = mfgLocation;
-        manufacturers.push(owner);
+        manufacturers.push(mfgaddress);
     }
     function verifyManufacturer(address mfgaddress) view public returns(bytes32, bytes32){
         return(manufacturerDetails[mfgaddress].mfgName, manufacturerDetails[mfgaddress].mfgLocation);
     }
-    function addPatner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role) public onlyOwner() {
+    function addPatner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role) public onlyManufacturer() {
         partnerDetails[partnerAddress].partnerAddress = partnersAddress;
         partnerDetails[partnerAddress].partnerName = partnerName;
         partnerDetails[partnerAddress].partnerLocation = partnerLocation;
         partnerDetails[partnerAddress].role = role;
         partners.push(partnersAddress);
     }
-    function editPartner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role)  public onlyOwner() {
+    function editPartner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role)  public onlyManufacturer() {
         partnerDetails[partnerAddress].partnerName = partnerName;
         partnerDetails[partnerAddress].partnerLocation = partnerLocation;
         partnerDetails[partnerAddress].role = role;
@@ -67,14 +75,15 @@ uint256[] public products;
     function verifyPartner(address _partnerAddress) view public returns(bytes32, bytes32,bytes32){
         return(partnerDetails[_partnerAddress].partnerName, partnerDetails[_partnerAddress].partnerLocation, partnerDetails[_partnerAddress].role);
     }
-    function addProduct(uint256 proId,address[] memory partAddress,bytes32 proName,bytes32[] memory proState,bytes32[] memory timeStamp)  public onlyOwner(){
+    function addProduct(uint256 proId,address[] memory partAddress,bytes32 proName,bytes32[] memory proState,bytes32[] memory timeStamp)  public onlyManufacturer(){
         productDetails[proId].proName = proName;
         productDetails[proId].proState = proState;
         productDetails[proId].timeStamp = timeStamp;
         productDetails[proId].partAddress = partAddress;
         products.push(proId);
+        productId ++;
     }
-    function updateProduct(uint256 proId,bytes32[] memory proState,bytes32[] memory timeStamp)  public  onlyPartner() {
+    function updateProduct(uint256 proId,bytes32[] memory proState,bytes32[] memory timeStamp)  public onlyManufacturer() onlyPartner() {
         productDetails[proId].proState = proState;
         productDetails[proId].timeStamp = timeStamp;     
     }
