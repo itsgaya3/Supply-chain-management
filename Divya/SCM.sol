@@ -48,13 +48,12 @@ contract SCM {
     address[] public partnerDetails;
 
     struct product {
-        
-        bytes32 proName;
+        bytes32 proName; 
         bytes32[] proState;
         bytes32[] timeStamp;
         address[] partAddress;
     }
-    mapping(uint256 => product) public proId;
+    mapping(uint256 => product) public Products;
     uint256[] public proDetails;
 
     /* Adding the manufacturerdetails by Owner */
@@ -66,7 +65,7 @@ contract SCM {
 
         mfgDetails.push(_mfgAddress);
     }
-    function veryManufacturer(address _mfgAddress) view public returns(bytes32 _mfgName,bytes32 _mfgLocation){
+    function verifyManufacturer(address _mfgAddress) view public returns(bytes32 _mfgName,bytes32 _mfgLocation){
         return (mfgAddress[_mfgAddress].mfgName,mfgAddress[_mfgAddress].mfgLocation);
     }
 
@@ -80,7 +79,7 @@ contract SCM {
 
         partnerDetails.push(_partnerAddress);
     }
-    function veryPartner(address _partnerAddress) view public returns(bytes32 _partnerName,bytes32 _partnerLocation,bytes32 _role){
+    function verifyPartner(address _partnerAddress) view public returns(bytes32 _partnerName,bytes32 _partnerLocation,bytes32 _role){
         return (partnerAddress[_partnerAddress].partnerName,partnerAddress[_partnerAddress].partnerLocation,partnerAddress[_partnerAddress].role);
     }
     
@@ -96,35 +95,35 @@ contract SCM {
         partnerAddress[_partnerAddress].partnerLocation = _partnerLocation;
         partnerAddress[_partnerAddress].partnerAddress = _partnerAddress;
         partnerAddress[_partnerAddress].role = _role;
-
     }
 
-    /*Partner details will be displaied based on partnerAddressAddress*/
-
-    function getAllPartnerDetails() public view returns (address[] memory) {
-        return partnerDetails;
-    }
-
-    /*Adding the products*/
+     /*Adding the products*/
 
     /*Adding products screen ,battery,motherboard details by manufacturer or partner*/
 
     function addProduct(
-        uint256 _proId,
         bytes32 _proName,
         bytes32[] memory _proState,
         bytes32[] memory _timeStamp,
         address[] memory _partAddress
-    ) public {
-        require(
-            msg.sender == PartnerAddress || msg.sender == manufacturerAddress
-        ); /*Only partner and manufacturer are allowed to add the details*/
-        proId[_proId].proId = _proId;
-        proId[_proId].proName = _proName;
-        proId[_proId].proState = _proState;
-        proId[_proId].timeStamp = _timeStamp;
-        proId[_proId].partAddress = _partAddress;
-        proDetails.push(_proId);
+    ) public onlymanufacturer {
+        /*Only manufacturer are allowed to add the details*/
+        proId++;
+        Products[proId].proName = _proName;
+        Products[proId].proState = _proState;
+        Products[proId].timeStamp = _timeStamp;
+        Products[proId].partAddress = _partAddress;
+        proDetails.push(proId);
+    }
+       /*Product details will be displaied based on proId*/
+    
+    function verifyProduct(uint256 _proId) view public returns(
+    
+        bytes32 _proName,
+        bytes32[] memory _proState,
+        bytes32[] memory _timeStamp,
+        address[] memory _partAddress){
+        return (Products[_proId].proName,Products[_proId].proState,Products[_proId].timeStamp,Products[_proId].partAddress);
     }
 
     function updateProduct(
@@ -132,17 +131,10 @@ contract SCM {
         bytes32[] memory _proState,
         bytes32[] memory _timeStamp
     ) public onlypartner {
-        require(
-            msg.sender == PartnerAddress || msg.sender == manufacturerAddress
-        ); /*Only partner or manufacturer are allowed to make the changes.*/
-        proId[_proId].proState = _proState;
-        proId[_proId].timeStamp = _timeStamp;
-
+        /*Only partner allowed to make the changes.*/
+        Products[_proId].proState= _proState;
+        Products[_proId].timeStamp = _timeStamp;
+        proDetails.push(proId);
      }
 
-    /*Product details will be displaied based on proId*/
-
-    function getAllProductDetails() public view returns (uint256[] memory) {
-        return proDetails;
-    }
-}
+ }
