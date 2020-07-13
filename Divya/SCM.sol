@@ -4,11 +4,10 @@ pragma solidity 0.5.17;
 
 contract SCM {
     address public manufacturerAddress; /* manufacturer update the partner details*/
-    address public PartnerAddress; //partner updates the product details and status
     uint256 public proId;
     /* restricting the users or partners to edit or add the details.Only manufacturerAddress can add or edit*/
 
-    constructor(address) public {
+    constructor() public {
         manufacturerAddress = msg.sender;
         proId = 34567;
     }
@@ -21,13 +20,15 @@ contract SCM {
         );
         _;
     }
-    /*if msg.sender is equals to PartnerAddress then able to push the data, if not the below error will pop */
+    /*Only partner can access and able to push the data, if not the below error will pop */
     modifier onlypartner() {
-        require(
-            PartnerAddress == msg.sender,
+        for(uint256 i=0;i<partnerDetails.length;i++){
+            require(msg.sender != manufacturerAddress,
             "Only Partner can add or update the part details"
         );
         _;
+        
+        }
     }
 
     struct manufacturer {
@@ -49,8 +50,9 @@ contract SCM {
 
     struct product {
         bytes32 proName; 
-        bytes32[] proState;
+        bytes32[] proState; /* 0-onhold,1-pemding,2-Inprogress,3-completed*/
         bytes32[] timeStamp;
+        bytes32[] stage;  /* 0-Supplier,1-Assembly,2-Distributor,3-Retailor*/
         address[] partAddress;
     }
     mapping(uint256 => product) public Products;
@@ -74,15 +76,12 @@ contract SCM {
     function addPartner(bytes32 _partnerName,bytes32 _partnerLocation,address _partnerAddress,bytes32 _role) public onlymanufacturer {
         partnerAddress[_partnerAddress].partnerName = _partnerName;
         partnerAddress[_partnerAddress].partnerLocation = _partnerLocation;
-        partnerAddress[_partnerAddress].partnerAddress = PartnerAddress;
+        partnerAddress[_partnerAddress].partnerAddress = _partnerAddress;
         partnerAddress[_partnerAddress].role = _role;
 
         partnerDetails.push(_partnerAddress);
     }
-    function verifyPartner(address _partnerAddress) view public returns(bytes32 _partnerName,bytes32 _partnerLocation,bytes32 _role){
-        return (partnerAddress[_partnerAddress].partnerName,partnerAddress[_partnerAddress].partnerLocation,partnerAddress[_partnerAddress].role);
-    }
-    
+  
     /*Editing multiple partner details by manufacturer*/
 
     function updatePartnerDetails(
@@ -96,7 +95,10 @@ contract SCM {
         partnerAddress[_partnerAddress].partnerAddress = _partnerAddress;
         partnerAddress[_partnerAddress].role = _role;
     }
-
+    function verifyPartner(address _partnerAddress) view public returns(bytes32 _partnerName,bytes32 _partnerLocation,bytes32 _role){
+        return (partnerAddress[_partnerAddress].partnerName,partnerAddress[_partnerAddress].partnerLocation,partnerAddress[_partnerAddress].role);
+    }
+    
      /*Adding the products*/
 
     /*Adding products screen ,battery,motherboard details by manufacturer or partner*/
@@ -105,6 +107,7 @@ contract SCM {
         bytes32 _proName,
         bytes32[] memory _proState,
         bytes32[] memory _timeStamp,
+        bytes32[] memory _stage,
         address[] memory _partAddress
     ) public onlymanufacturer {
         /*Only manufacturer are allowed to add the details*/
@@ -112,29 +115,33 @@ contract SCM {
         Products[proId].proName = _proName;
         Products[proId].proState = _proState;
         Products[proId].timeStamp = _timeStamp;
+        Products[proId].stage = _stage;
         Products[proId].partAddress = _partAddress;
         proDetails.push(proId);
     }
        /*Product details will be displaied based on proId*/
-    
-    function verifyProduct(uint256 _proId) view public returns(
-    
-        bytes32 _proName,
-        bytes32[] memory _proState,
-        bytes32[] memory _timeStamp,
-        address[] memory _partAddress){
-        return (Products[_proId].proName,Products[_proId].proState,Products[_proId].timeStamp,Products[_proId].partAddress);
-    }
 
     function updateProduct(
         uint256 _proId,
-        bytes32[] memory _proState,
+        bytes32[] memory _proState,bytes32[] memory _stage,
         bytes32[] memory _timeStamp
     ) public onlypartner {
         /*Only partner allowed to make the changes.*/
         Products[_proId].proState= _proState;
         Products[_proId].timeStamp = _timeStamp;
+        Products[proId].stage = _stage;
         proDetails.push(proId);
      }
+    function verifyProduct(uint256 _proId) view public returns(
+    
+        bytes32 _proName,
+        bytes32[] memory _proState,
+        bytes32[] memory _timeStamp,
+        bytes32[] memory _stage,
+        address[] memory _partAddress){
+        return (Products[_proId].proName,Products[_proId].proState,Products[_proId].timeStamp,Products[_proId].stage,Products[_proId].partAddress);
+    }
 
  }
+/* Complete input details will be displayed in the verify manufacture,verify partner,verify product which 
+can be used for the backend script.*/
