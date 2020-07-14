@@ -24,7 +24,6 @@ struct manufacturer{
     bytes32 mfgLocation;
 }
 mapping(address=>manufacturer) manufacturerDetails;
-address[] public manufacturers;
 struct partner{
     address partnerAddress;
     bytes32 partnerName;
@@ -45,13 +44,11 @@ uint256[] public products;
         manufacturerDetails[owner].mfgaddress = owner;
         manufacturerDetails[owner].mfgName = mfgName;
         manufacturerDetails[owner].mfgLocation = mfgLocation;
-        manufacturers.push(owner);
     }
-    function verifyManufacturer(address mfgaddress) view public returns(bytes32, bytes32){
-        return(manufacturerDetails[mfgaddress].mfgName, manufacturerDetails[mfgaddress].mfgLocation);
+    function verifyManufacturer() view public returns(bytes32, bytes32){
+        return(manufacturerDetails[owner].mfgName, manufacturerDetails[owner].mfgLocation);
     }
     function addPatner(address partnerAddress,bytes32 partnerName,bytes32 partnerLocation,bytes32 role) public onlyOwner() {
-        
         partnerDetails[partnerAddress].partnerAddress = partnerAddress;
         partnerDetails[partnerAddress].partnerName = partnerName;
         partnerDetails[partnerAddress].partnerLocation = partnerLocation;
