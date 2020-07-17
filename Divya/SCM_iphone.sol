@@ -43,7 +43,7 @@ contract SCM {
         bytes32 partnerName;
         bytes32 partnerLocation;
         address partnerAddress;
-        bytes32 role;
+        bytes32 role;/* 0-Supplier,1-Assembly,2-Distributor,3-Retailor*/
     }
     mapping(address => partner) public partnerAddress;
     address[] public partnerDetails;
@@ -52,7 +52,6 @@ contract SCM {
         bytes32 proName; 
         bytes32[] proState; /* 0-onhold,1-pemding,2-Inprogress,3-completed*/
         bytes32[] timeStamp;
-        bytes32[] stage;  /* 0-Supplier,1-Assembly,2-Distributor,3-Retailor*/
         address[] partAddress;
     }
     mapping(uint256 => product) public Products;
@@ -107,7 +106,6 @@ contract SCM {
         bytes32 _proName,
         bytes32[] memory _proState,
         bytes32[] memory _timeStamp,
-        bytes32[] memory _stage,
         address[] memory _partAddress
     ) public onlymanufacturer {
         /*Only manufacturer are allowed to add the details*/
@@ -115,7 +113,6 @@ contract SCM {
         Products[proId].proName = _proName;
         Products[proId].proState = _proState;
         Products[proId].timeStamp = _timeStamp;
-        Products[proId].stage = _stage;
         Products[proId].partAddress = _partAddress;
         proDetails.push(proId);
     }
@@ -123,13 +120,12 @@ contract SCM {
 
     function updateProduct(
         uint256 _proId,
-        bytes32[] memory _proState,bytes32[] memory _stage,
+        bytes32[] memory _proState,
         bytes32[] memory _timeStamp
     ) public onlypartner {
         /*Only partner allowed to make the changes.*/
         Products[_proId].proState= _proState;
         Products[_proId].timeStamp = _timeStamp;
-        Products[proId].stage = _stage;
         proDetails.push(proId);
      }
     function verifyProduct(uint256 _proId) view public returns(
@@ -137,11 +133,10 @@ contract SCM {
         bytes32 _proName,
         bytes32[] memory _proState,
         bytes32[] memory _timeStamp,
-        bytes32[] memory _stage,
         address[] memory _partAddress){
-        return (Products[_proId].proName,Products[_proId].proState,Products[_proId].timeStamp,Products[_proId].stage,Products[_proId].partAddress);
+        return (Products[_proId].proName,Products[_proId].proState,Products[_proId].timeStamp,Products[_proId].partAddress);
     }
 
  }
-/* Complete input details will be displayed in the verify manufacture,verify partner,verify product which 
+ /* Complete input details will be displayed in the verify manufacture,verify partner,verify product which 
 can be used for the backend script.*/
