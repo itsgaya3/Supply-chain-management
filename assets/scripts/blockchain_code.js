@@ -1,4 +1,5 @@
 var contractAddress = "[0x9b0BD394938D1DC2fBA4d0f11fb21e964C3588Cd]";
+var accounts;
 var abi = [
 	{
 		"constant": false,
