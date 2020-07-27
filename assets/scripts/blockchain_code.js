@@ -436,7 +436,7 @@ window.addEventListener('load',async()=> {
 					web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3162d4cfe26a418a9c3b1237cb18546a"))
 			}
 			
-			SCM = await new web3.eth.Contract(abi, contractAddress);
+			SCM_i7 = await new web3.eth.Contract(abi, contractAddress);
             
             accounts = await web3.eth.getAccounts();
             console.log(accounts);   
