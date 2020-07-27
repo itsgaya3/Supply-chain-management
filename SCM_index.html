@@ -343,14 +343,44 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
-                </div>
+                    <!-- Add user details should pass to Blockchain -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                       <label>PartnerName</label>
+                       <input type="text" class="mb-0 table" id="PartnerName"></input>
+                       <label>Location</label>
+                       <input type="text" class="mb-0 table" id="Location"></input>
+                       <label>ETH Address</label>
+                       <input type="text" class="mb-0 table" id="ETHaddress" ></input>
+                       <label>Status</label>
+                       <select class="mb-0 table" id="Status" >
+                           <option value="ss">Select</option>
+                           <option value="act">Active</option>
+                           <option value="pen">Pending</option>
+                       </select>
+                       <label>Role</label>
+                       <select class="mb-0 table" id="Role" >
+                           <option value="ss">Select</option>
+                           <option value="sup">Supplier</option>
+                           <option value="assm">Assembly</option>
+                           <option value="dist">Distributor</option>
+                           <option value="retail">Retailor</option>
+                       </select>
+                    <!-- <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p> -->
+                    </div>
+                   </div>
+                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
     </div>
 <script type="text/javascript" src="./assets/scripts/main.js"></script></body>
+<!-- Blockchain code -->
+<script src="/assets/scripts/blockchain_code.js"></script>
+<!-- Blockchain Web3 library -->
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
 </html>

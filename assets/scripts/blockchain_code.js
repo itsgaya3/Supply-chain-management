@@ -1,4 +1,4 @@
-var contractAddress = "[0x6a97d3e2c6f7831da3ebebbf0321648b6e9e83a9]";
+var contractAddress = "[0x9b0BD394938D1DC2fBA4d0f11fb21e964C3588Cd]";
 var abi = [
 	{
 		"constant": false,
@@ -74,11 +74,6 @@ var abi = [
 				"type": "bytes32[]"
 			},
 			{
-				"internalType": "bytes32[]",
-				"name": "_stage",
-				"type": "bytes32[]"
-			},
-			{
 				"internalType": "address[]",
 				"name": "_partAddress",
 				"type": "address[]"
@@ -137,11 +132,6 @@ var abi = [
 			{
 				"internalType": "bytes32[]",
 				"name": "_proState",
-				"type": "bytes32[]"
-			},
-			{
-				"internalType": "bytes32[]",
-				"name": "_stage",
 				"type": "bytes32[]"
 			},
 			{
@@ -421,11 +411,6 @@ var abi = [
 				"type": "bytes32[]"
 			},
 			{
-				"internalType": "bytes32[]",
-				"name": "_stage",
-				"type": "bytes32[]"
-			},
-			{
 				"internalType": "address[]",
 				"name": "_partAddress",
 				"type": "address[]"
@@ -448,7 +433,7 @@ window.addEventListener('load',async()=> {
 				if(typeof web3 !== "undefined"){
 					web3 = new Web3(web3.currentProvider);
 					}else {
-					web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/a518d32cdcf2497994f77be0ee9c7471"))
+					web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3162d4cfe26a418a9c3b1237cb18546a"))
 			}
 			
 			SCM = await new web3.eth.Contract(abi, contractAddress);
@@ -470,3 +455,6 @@ window.addEventListener('load',async()=> {
         console.log("no ethereum in the browser");
     }
 });
+async function addtoBlockchain(){
+	console.log("i am working")
+}

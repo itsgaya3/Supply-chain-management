@@ -79,10 +79,8 @@ contract SCM {
         partnerAddress[_partnerAddress].role = _role;
 
         partnerDetails.push(_partnerAddress);
-    }
-  
+    } 
     /*Editing multiple partner details by manufacturer*/
-
     function updatePartnerDetails(
         bytes32 _partnerName,
         bytes32 _partnerLocation,
@@ -97,7 +95,6 @@ contract SCM {
     function verifyPartner(address _partnerAddress) view public returns(bytes32 _partnerName,bytes32 _partnerLocation,bytes32 _role){
         return (partnerAddress[_partnerAddress].partnerName,partnerAddress[_partnerAddress].partnerLocation,partnerAddress[_partnerAddress].role);
     }
-    
      /*Adding the products*/
 
     /*Adding products screen ,battery,motherboard details by manufacturer or partner*/
@@ -136,7 +133,6 @@ contract SCM {
         address[] memory _partAddress){
         return (Products[_proId].proName,Products[_proId].proState,Products[_proId].timeStamp,Products[_proId].partAddress);
     }
-
  }
  /* Complete input details will be displayed in the verify manufacture,verify partner,verify product which 
 can be used for the backend script.*/
