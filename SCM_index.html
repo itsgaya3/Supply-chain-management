@@ -323,12 +323,29 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                           <label>Product Name</label>
+                           <input type="text" class="mb-0 table" id="ProductName"></input>
+                           <label>Product Status</label>
+                           <select class="mb-0 table" id="ProductStatus" >
+                               <option value="ss">Select</option>
+                               <option value="act">Onhold</option>
+                               <option value="pen">Pending</option>
+                               <option value="inp">Inprogress</option>
+                               <option value="com">completed</option>
+                               </select>
+                           <label>TimeStamp</label>
+                           <input type="datetime-local" class="mb-0 table" id="TimeStamp"></input>
+                           <label>Partner Address</label>
+                           <input type="text" class="mb-0 table" id="PartnerAddress" ></input>
+                           
+                        <!-- <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p> -->
+                        </div>
+                       </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button id="productbtn" type="button" class="btn btn-primary" onclick="addProductToBlockchain">Submit</button>
                 </div>
             </div>
         </div>
@@ -345,7 +362,7 @@
                     <!-- Add user details should pass to Blockchain -->
                 <div class="card-body">
                     <div class="table-responsive">
-                       <label>PartnerName</label>
+                       <label>Partner Name</label>
                        <input type="text" class="mb-0 table" id="PartnerName"></input>
                        <label>Location</label>
                        <input type="text" class="mb-0 table" id="Location"></input>
