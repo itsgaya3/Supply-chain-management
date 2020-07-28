@@ -397,3 +397,14 @@ window.addEventListener('load',async()=>{
 	
 });
 
+async function addUser() {
+	var userName = $('#userName').val();
+	var location = $('#location').val();
+	var ethAddress = $('#ethAddress').val();
+	var status = $('#role').val();
+	console.log(userName,location,ethAddress,status);
+	console.log("iam a issue function");
+	SupplyChain.methods.addPatner()
+	
+}
+

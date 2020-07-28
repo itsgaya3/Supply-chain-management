@@ -173,7 +173,8 @@
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>
+                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td>
+                                            
                                         </tr>
                                         <tr>
                                             <td class="text-center text-muted">345679</td>
@@ -199,7 +200,7 @@
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>
+                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center text-muted">345680</td>
@@ -225,7 +226,7 @@
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>
+                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -240,7 +241,7 @@
                                 <div class="card-header">Manage Users
                                     <div class="btn-actions-pane-right">
                                         <div role="group" class="btn-group-sm btn-group">
-                                            <button type="button" id="userDetails" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#userModal">Add User</button>
+                                            <button type="button" id="userDetails" class="btn mr-2 mb-2 btn-primary" onclick="addUsers()" data-toggle="modal" data-target="#userModal">Add User</button>
                                         </div>
                                     </div>
                                 </div>
@@ -271,7 +272,7 @@
                                             <td class="text-center">Japan</td>
                                             <td class="text-center">0x67782A2187c13BDDBD49Fd94a792308aFd91522e</td>
                                             <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>
+                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center text-muted">345678</td>
@@ -287,7 +288,7 @@
                                             <td class="text-center">Japan</td>
                                             <td class="text-center">0x67782A2187c13BDDBD49Fd94a792308aFd91522e</td>
                                             <td class="text-center"><div class="badge badge-success">Active</div></td>
-                                            <td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>
+                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -316,7 +317,8 @@
         </div>
     </div>
     <!-- add product modal -->
-    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+    
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -335,6 +337,7 @@
             </div>
         </div>
     </div>
+   
     <!-- add user modal -->
     <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -346,20 +349,39 @@
                     </button>
                 </div>
                 <div class="modal-body" id="addUser">
-                    <input class="mb-0" type="text" placeholder="User Name"></input>
-                    <input class="mb-0" type="text" placeholder="Location"></input>
-                    <input class="mb-0" type="text" placeholder="ETH Address"></input>
-                    <input class="mb-0" type="text" placeholder="Status"></input>
-
+                    <input class="mb-0" type="text" id="userName" placeholder="User Name"></input>
+                    <input class="mb-0" type="text" id="location" placeholder="Location"></input>
+                    <input class="mb-0" type="text" id="ethAddress" placeholder="ETH Address"></input>
+                    <input class="mb-0" type="text" id="role" placeholder="Status"></input>
+                    
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="addUser()">Add User</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addUser()">Save changes</button>
+                    
                 </div>
             </div>
         </div>
     </div>
-<script type="text/javascript" src="./assets/scripts/main.js"></script>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div><script type="text/javascript" src="./assets/scripts/main.js"></script>
 <script src="./Gaya3/supplyChain.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
