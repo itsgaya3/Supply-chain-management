@@ -1,4 +1,4 @@
-var contractAddress = "[0x9b0BD394938D1DC2fBA4d0f11fb21e964C3588Cd]";
+var contractAddress = "[0xac83df8316c628c6e50c8034ff4b9957492179c5]";
 var accounts;
 var abi = [
 	{
@@ -437,15 +437,16 @@ window.addEventListener('load',async()=> {
 					web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3162d4cfe26a418a9c3b1237cb18546a"))
 			}
 			
-			SCM_i7 = await new web3.eth.Contract(abi, contractAddress);
-            
             accounts = await web3.eth.getAccounts();
             console.log(accounts);   
             web3.eth.defaultAccount = accounts[0];
 			console.log(web3.eth.defaultAccount);
+
+			SCM_i7= await new web3.eth.Contract(abi, contractAddress);
       
         } catch (error){
-            console.log("error");
+			alert("error");
+            // console.log("error");
         }
 
         
@@ -456,6 +457,22 @@ window.addEventListener('load',async()=> {
         console.log("no ethereum in the browser");
     }
 });
-async function addtoBlockchain(){
-	console.log("i am working")
+async function addUserToBlockchain(){
+	$(userbtn).attr('disabled',true);
+	var PartnerName =$('#PartnerName').val();
+	var Location = $('#Location').val();
+	var ETHaddress = $('#ETHaddress').val();
+	var Role = $('#Role').val();
+	var Status = $('#Status').val();
+	
+
+	console.log(PartnerName,Location,ETHaddress,Role,Status);
+
+	SCM_i7.methods
+	.addPartner(web3.utils.fromAscii(PartnerName), web3.utils.fromAscii(Location) ,ETHaddress , web3.utils.fromAscii(Role), web3.utils.fromAscii(Status))
+	.send({from: web3.eth.defaultAccount})
+	.on('receipt', function(receipt){
+	 console.log(receipt);
+	});
 }
+
