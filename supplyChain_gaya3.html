@@ -241,57 +241,11 @@
                                 <div class="card-header">Manage Users
                                     <div class="btn-actions-pane-right">
                                         <div role="group" class="btn-group-sm btn-group">
-                                            <button type="button" id="userDetails" class="btn mr-2 mb-2 btn-primary" onclick="addUsers()" data-toggle="modal" data-target="#userModal">Add User</button>
+                                            <button type="button" id="userDetails" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#userModal">Add User</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive">
-                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th class="text-center">User ID</th>
-                                            <th>Name</th>
-                                            <th class="text-center">Location</th>
-                                            <th class="text-center">ETH Address</th>
-                                            <th class="text-center">Status</th>
-                                            <th class="text-center">Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="text-center text-muted">345678</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">Japan</td>
-                                            <td class="text-center">0x67782A2187c13BDDBD49Fd94a792308aFd91522e</td>
-                                            <td class="text-center"><div class="badge badge-warning">Pending</div></td>
-                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">345678</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">Japan</td>
-                                            <td class="text-center">0x67782A2187c13BDDBD49Fd94a792308aFd91522e</td>
-                                            <td class="text-center"><div class="badge badge-success">Active</div></td>
-                                            <td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="table-responsive" id="userDetails">
                                 </div>
                             </div>
                         </div>
@@ -327,8 +281,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <input class="mb-0" type="text" placeholder="Initiator Name"></input>
+                <div class="modal-body" id="addProduct">
+                    <div class="position-relative form-group"><label for="" >Name</label><input name="Name" id="" placeholder="" type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="" >Location</label><input name="Location" id="" placeholder="" type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="" >ETH Address</label><input name="ETH Address" id="" place88holder="" type="text" class="form-control"></div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -348,12 +305,24 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="addUser">
-                    <input class="mb-0" type="text" id="userName" placeholder="User Name"></input>
-                    <input class="mb-0" type="text" id="location" placeholder="Location"></input>
-                    <input class="mb-0" type="text" id="ethAddress" placeholder="ETH Address"></input>
-                    <input class="mb-0" type="text" id="role" placeholder="Status"></input>
+                <div class="modal-body">
+                    <div class="position-relative form-group"><label >Name</label><input  id="userName" type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label  >Location</label><input id="userLocation"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label >ETH Address</label><input  id="userAddress" type="text" class="form-control"></div>
                     
+                    <div class="position-relative form-group">
+                        <label for="exampleSelect" class="">Role</label>
+                        <select name="select" id="userRole" class="form-control">
+                         <option >select</option>
+                         <option value="screen">Screen </option>
+                         <option value="battery">Battery </option>
+                         <option value="motherboard">Motherboard</option>
+                         <option value="assembler">Assembler</option>
+                         <option value="supplier">Supplier</option>
+                         <option value="courier">Courier</option>
+                         <option value="retailer">Retailer</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" onclick="addUser()">Add User</button>
