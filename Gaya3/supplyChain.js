@@ -387,6 +387,7 @@ async function addUser() {
 	var role = $('#userRole').val();
 	var noOfUsers =0;
 	var userId=345678;
+	var userData;
 	console.log(userName,location,ethAddress,role);
 	console.log("iam a issue function");
 	SupplyChain.methods
@@ -395,29 +396,12 @@ async function addUser() {
 		 .on('receipt',function(receipt){
 			 console.log(receipt);
 		 });
-	// var userData=`<table class="align-middle mb-0 table table-borderless table-striped table-hover">
-	// <thead>
-	// <tr>
-	// 	<th class="text-center">User ID</th>
-	// 	<th>Name</th>
-	// 	<th class="text-center">Location</th>
-	// 	<th class="text-center">ETH Address</th>
-	// 	<th class="text-center">Status</th>
-	// 	<th class="text-center">Actions</th>
-	// </tr>
-	// </thead>
-	// <tbody>`
-	// for(var i=0;i<noOfUsers.length;i++){
-	// 	userData+='<tr><td class="text-center text-muted">'+userId+'</td><td><div class="widget-content p-0"><div class="widget-content-wrapper"><div class="widget-content-left flex2"><div class="widget-heading">John Doe</div>'+userName+
-	// 	'</div></div></div></td><td class="text-center">'+location+
-	// 	'</td><td class="text-center">'+ethAddress+
-	// 	'</td><td class="text-center"><div class="badge badge-warning">'++
-	// 	'</div></td><td class="text-center"><div role="group" class="btn-group-sm btn-group"><button type="button"  class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">view / update</button></div></td></tr>'
-	// }
-	// userId++;
-	// noOfUsers++;
-	// userData+=`</tbody></table>`
-	// $('#userDetails').append(userData);
-
+	
+	userData='<td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning">Pending</div></td><td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>'
+	
+	userId++;
+	noOfUsers++;
+	$('#userDetails').append(userData);
+	
 }
 

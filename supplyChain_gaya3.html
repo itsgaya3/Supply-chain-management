@@ -241,11 +241,28 @@
                                 <div class="card-header">Manage Users
                                     <div class="btn-actions-pane-right">
                                         <div role="group" class="btn-group-sm btn-group">
-                                            <button type="button" id="userDetails" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#userModal">Add User</button>
+                                            <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#userModal">Add User</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive" id="userDetails">
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">User ID</th>
+                                            <th>Name</th>
+                                            <th class="text-center">Location</th>
+                                            <th class="text-center">ETH Address</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr id="userDetails">
+                                            
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -282,9 +299,12 @@
                     </button>
                 </div>
                 <div class="modal-body" id="addProduct">
-                    <div class="position-relative form-group"><label for="" >Name</label><input name="Name" id="" placeholder="" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="" >Location</label><input name="Location" id="" placeholder="" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="" >ETH Address</label><input name="ETH Address" id="" place88holder="" type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="" >Initiator Name</label><input  id=""  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="" >Location</label><input  id="" type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="" >Product Name</label><input  id="" type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="" >Product State</label><input id="" type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="" >Time Stamp</label><input  id=""  type="number" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="" >Partner Address</label><input  id=""  type="text" class="form-control"></div>
                     
                 </div>
                 <div class="modal-footer">
