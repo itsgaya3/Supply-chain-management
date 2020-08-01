@@ -385,7 +385,6 @@ async function addUser() {
 	var location = $('#userLocation').val();
 	var ethAddress = $('#userAddress').val();
 	var role = $('#userRole').val();
-	var noOfUsers =0;
 	var userId=345678;
 	var userData;
 	console.log(userName,location,ethAddress,role);
@@ -400,7 +399,6 @@ async function addUser() {
 	userData='<td class="text-center text-muted">'+userId+'</td> <td> <div class="widget-content p-0"> <div class="widget-content-wrapper"> <div class="widget-content-left flex2"> <div class="widget-heading">'+userName+'</div> </div> </div> </div> </td> <td class="text-center">'+location+'</td> <td class="text-center">'+ethAddress+'</td> <td class="text-center"><div class="badge badge-warning">Pending</div></td><td class="text-center"><button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">View / Update</button></td>'
 	
 	userId++;
-	noOfUsers++;
 	$('#userDetails').append(userData);
 	
 }
