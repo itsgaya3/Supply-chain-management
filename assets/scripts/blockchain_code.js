@@ -1,4 +1,4 @@
-var contractAddress = "[0xac83df8316c628c6e50c8034ff4b9957492179c5]";
+var contractAddress = "[0xc0d33b8e154eb51e210ca2b31606ec71ed6bb12a]";
 var accounts;
 var abi = [
 	{
@@ -330,6 +330,21 @@ var abi = [
 	},
 	{
 		"constant": true,
+		"inputs": [],
+		"name": "userId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [
 			{
 				"internalType": "address",
@@ -436,13 +451,11 @@ window.addEventListener('load',async()=> {
 					}else {
 					web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3162d4cfe26a418a9c3b1237cb18546a"))
 			}
-			
+			SupplyChain= await new web3.eth.Contract(abi, contractAddress);
             accounts = await web3.eth.getAccounts();
             console.log(accounts);   
             web3.eth.defaultAccount = accounts[0];
 			console.log(web3.eth.defaultAccount);
-
-			SCM_i7= await new web3.eth.Contract(abi, contractAddress);
       
         } catch (error){
 			alert("error");
@@ -468,7 +481,7 @@ async function addUserToBlockchain(){
 
 	console.log(PartnerName,Location,ETHaddress,Role,Status);
 
-	SCM_i7.methods
+	SupplyChain.methods
 	.addPartner(web3.utils.fromAscii(PartnerName), web3.utils.fromAscii(Location) ,ETHaddress , web3.utils.fromAscii(Role), web3.utils.fromAscii(Status))
 	.send({from: web3.eth.defaultAccount})
 	.on('receipt', function(receipt){
